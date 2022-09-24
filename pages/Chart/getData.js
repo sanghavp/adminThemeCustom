@@ -1,6 +1,6 @@
 app.controller(
   "orgChart",
-  function ($scope, $rootScope, $compile, $timeout, $interval) {
+  function ($scope, $timeout) {
     $scope.chartMode = "default";
     $scope.render = (chartMode) => {
       $scope.chartMode = chartMode;
@@ -10,7 +10,6 @@ app.controller(
     }
     $scope.reRender = () => {
       $scope.chart.render()
-      
     }
     var chart;
     // d3.csv(
@@ -18,26 +17,12 @@ app.controller(
     // )
     // d3.json("http://localhost:3000/data")
     d3.json(
-      "http://10.0.1.24:5006/hrmprofiles/list/6090c7cddc095868143c7964?status=Đang làm việc",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          title: "Hello",
-          body: "_d3-fetch_ is it",
-          userId: 1,
-          friends: [2, 3, 4],
-        }),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-          Authorization:
-            "Basic ZmFzdHdvcms6M2QyZGMxN2ZlOWM3OTA3MmY0ZTZiNGQ5YWVmNzNhN2U=",
-        },
-      }
+      "https://extapi01.herokuapp.com/v1/users/chart"
     )
       // d3.json("http://localhost:2022/result")
       .then((dataFlattened) => {
-        console.log(dataFlattened.result[0].phong_ban.ma);
-        $scope.dataFlattened = dataFlattened;
+        console.log("Tai lieu get ve: ",dataFlattened);
+        $scope.dataFlattened = dataFlattened.data;
         dataFlattened.result.forEach((d) => {
           d.ten_phong_ban = d.phong_ban.ten;
           d.ma_phong_ban = d.phong_ban.ma;

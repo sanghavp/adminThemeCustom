@@ -1,6 +1,6 @@
-const usersData = "http://localhost:3000/v1/users";
-const registerAPI = 'http://localhost:3000/v1/auth/register'
-const loginAPI = 'http://localhost:3000/v1/auth/login'
+const usersData = "https://extapi01.herokuapp.com//v1/users";
+const registerAPI = 'https://extapi01.herokuapp.com//v1/auth/register'
+const loginAPI = 'https://extapi01.herokuapp.com//v1/auth/login'
 
 app.controller("users", function($scope, $rootScope, $http,) {
    $http({
